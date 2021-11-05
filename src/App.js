@@ -29,8 +29,8 @@ class App extends Component {
 }
 const mapStateToProps = state => {
   return {
-    state: state.smurfs,
-    isFetching: state.isFetching,
+    state: state.smurf,
+    isLoading: state.isLoading,
     error: state.error
   }
 }
