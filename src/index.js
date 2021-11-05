@@ -1,12 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import logger from 'redux-logger'
 import { applyMiddleware, createStore } from "redux";
 import "./index.css";
 import App from "./App";
+import reducer from "./reducers";
+import { Provider } from "react-redux";
 
 const store = createStore(
-    reducer, 
+    reducer,
+    applyMiddleware()
 )
 
 const { worker } = require('./mocks/browser');
@@ -15,7 +17,9 @@ worker.start();
 const rootElement = document.getElementById("root");
 
 ReactDOM.render(
-    <App />, 
+    <Provider store={store}>
+        <App />        
+    </Provider>,
     rootElement
 );
 
