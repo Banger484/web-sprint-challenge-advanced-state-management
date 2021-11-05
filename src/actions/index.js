@@ -13,8 +13,12 @@ export const fetchSmurfs = () => dispatch => {
             dispatch({ type: FAILURE_FETCH_SMURFS, payload: err.data })
         })
 }
-export const addSmurf = () => {
-    return({ type: ADD_SMURF})
+export const addSmurf = () => dispatch => {
+   dispatch({ type: ADD_SMURF})
+   axios.post(`http://localhost:3333/smurfs`)
+   .then(res => {
+       console.log(res)
+   })
 }
 
 //Task List:
