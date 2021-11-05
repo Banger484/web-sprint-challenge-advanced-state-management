@@ -1,8 +1,46 @@
-
+import { START_FETCH_SMURFS, SUCCESSFUL_FETCH_SMURFS, FAILURE_FETCH_SMURFS, ADD_SMURF } from "../actions/index";
 export const initialState = {
+    smurfs: [],
+    isFetching: false,
+    error: ''
 }
 
-const reducer = ()=>{
+const reducer = (state = initialState, action)=>{
+    console.log('reducer', action);
+    switch(action.type) {
+        case START_FETCH_SMURFS:
+            console.log('is this a thing')
+        return {
+            ...state,
+            isFetching: true,
+            error: ''
+        }
+        case SUCCESSFUL_FETCH_SMURFS:
+            console.log('hi hi')
+            return {
+                ...state,
+                smurfs: action.payload,
+                isFetching: false,
+                error: ''
+            }
+        case FAILURE_FETCH_SMURFS:
+            return {
+                ...state,
+                isFetching: false,
+                error: action.payload
+            }
+        case ADD_SMURF:
+            const newSmurf = {
+                id: Date.now(),
+                name: action.payload.name,
+                position: action.payload.position,
+                nickname: action.payload.nickname,
+                description: action.payload.description
+            }
+            return console.log(newSmurf)
+        default:
+            return (state);
+    }
 }
 
 //**************DO NOT EDIT ANY CODE BEYOND THIS POINT**************//

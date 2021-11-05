@@ -5,10 +5,11 @@ import "./index.css";
 import App from "./App";
 import reducer from "./reducers";
 import { Provider } from "react-redux";
+import thunk from "redux-thunk";
 
 const store = createStore(
     reducer,
-    applyMiddleware()
+    applyMiddleware(thunk)
 )
 
 const { worker } = require('./mocks/browser');
